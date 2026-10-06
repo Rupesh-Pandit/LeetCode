@@ -6,11 +6,11 @@ class Solution {
          System.arraycopy(nums2 , 0, arr, nums1.length ,nums2.length );
         Arrays.sort(arr);
 
-       int n= arr.length-1;
+       int n= arr.length;
         if(n % 2== 0){
-            return arr[n/2];
+            return( arr[n/2] + arr[n/2 - 1])/2.0;
         } else {
-            return( arr[n/2] + arr[n/2 + 1])/2.0;
+            return arr[n/2];
         }
     }
 }
