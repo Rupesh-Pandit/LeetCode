@@ -1,33 +1,32 @@
 class Solution {
-    public void rec( List<Integer> list, List<Integer> cal, List<List<Integer>> ans ){
-        if(list.size() == 0){
-         ans.add(new ArrayList<>(cal));
-      return;
-        } 
+    public void rec(int arr[], int idx, List<List<Integer>> ans) {
+        if(idx == arr.length){
+            List<Integer> list = new ArrayList<>();
+            for(int a: arr){
+                list.add(a);
+            }
+            ans.add(list);
+            return;
+        }
 
-        for(int i=0; i< list.size(); i++){
-            int num = list.get(i);
+        for(int i=idx; i< arr.length; i++){
+            int temp = arr[idx];
+            arr[idx] = arr[i];
+            arr[i] = temp;
 
-            cal.add(num);
-            List<Integer> newList = new ArrayList<>(list);
-            newList.remove(i);
+            rec(arr, idx+1, ans);
 
-           rec(newList, cal, ans);
+            int t = arr[idx];
+            arr[idx] = arr[i];
+            arr[i] = t;
 
-           cal.remove(cal.size()-1);
-          
         }
     }
+       
     public List<List<Integer>> permute(int[] nums) {
-        List<Integer> list = new ArrayList<>();
-      
-        for(int a : nums)
-        list.add(a);
+        List<List<Integer>> ans  = new ArrayList<>();
 
-        List<List<Integer>> ans = new ArrayList<>();
-
-        rec(list, new ArrayList<>(), ans);
-
+        rec(nums, 0,ans);
         return ans;
-    }
+        }
 }
