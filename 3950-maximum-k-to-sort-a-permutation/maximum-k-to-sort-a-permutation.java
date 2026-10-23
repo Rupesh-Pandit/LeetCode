@@ -8,21 +8,21 @@ class Solution {
         }
         if (isSorted)
             return 0;
-
+           int ans =-1;
         List<Integer> list = new ArrayList<>();
         for (int i = 0; i < nums.length; i++) {
-            if (nums[i] != i)
-                list.add(nums[i]);
+         
+            if (nums[i] != i){
+                int cal = nums[i] & i;
+
+                if(ans ==-1)
+                ans = cal;
+                else ans = ans & cal;
+
+            }
         }
 
-        int ans = list.get(0);
-        int j = 0;
        
-        while (j < list.size()) {
-            ans = ans & list.get(j);
-            j++;
-        }
-
         return ans;
     }
 }
