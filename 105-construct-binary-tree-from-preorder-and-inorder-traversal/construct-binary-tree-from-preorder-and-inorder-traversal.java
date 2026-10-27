@@ -24,9 +24,10 @@ class Solution {
 
     public TreeNode Tree(int[] preorder, int[] inorder,int left, int right){
         if(left > right) return null;
-        TreeNode root = new TreeNode(preorder[preIdx++]);
+        TreeNode root = new TreeNode(preorder[preIdx]);
 
         int inIdx = search(inorder, left, right, root.val);
+        preIdx++;
         root.left= Tree(preorder, inorder,  left, inIdx-1);
         root.right = Tree(preorder, inorder, inIdx + 1, right);
         return root;
@@ -34,7 +35,7 @@ class Solution {
 
     public TreeNode buildTree(int[] preorder, int[] inorder) {
        TreeNode  node=  Tree(preorder, inorder, 0, inorder.length-1);
-return node;
+        return node;
 
 
    }
